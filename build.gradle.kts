@@ -9,8 +9,8 @@ plugins {
 
 // detekt and ktlint run as standalone CLI tools. This keeps them independent of the
 // AGP / Kotlin plugin versions: `./gradlew detekt ktlintCheck`, `./gradlew ktlintFormat`.
-val detektCli: Configuration by configurations.creating
-val ktlintCli: Configuration by configurations.creating
+val detektCli: Configuration = configurations.create("detektCli")
+val ktlintCli: Configuration = configurations.create("ktlintCli")
 
 dependencies {
     detektCli(libs.detekt.cli)

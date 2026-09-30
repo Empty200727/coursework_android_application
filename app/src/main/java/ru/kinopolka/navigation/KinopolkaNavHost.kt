@@ -1,6 +1,10 @@
 package ru.kinopolka.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
@@ -8,6 +12,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
 import androidx.navigation.toRoute
+import ru.kinopolka.core.model.MediaKey
 import ru.kinopolka.feature.about.AboutScreen
 import ru.kinopolka.feature.details.DetailsScreen
 import ru.kinopolka.feature.genre.GenreScreen
@@ -17,6 +22,9 @@ import ru.kinopolka.feature.search.SearchScreen
 
 @Composable
 fun KinopolkaNavHost(navController: NavHostController, modifier: Modifier = Modifier) {
+    // Set by the search field of the home screen: the search screen then focuses its input.
+    var focusSearch by rememberSaveable { mutableStateOf(false) }
+    val openMedia: (MediaKey) -> Unit = { navController.navigate(DetailsRoute(it)) }
     NavHost(
         navController = navController,
         startDestination = HomeGraph,
@@ -25,14 +33,22 @@ fun KinopolkaNavHost(navController: NavHostController, modifier: Modifier = Modi
         navigation<HomeGraph>(startDestination = HomeRoute) {
             composable<HomeRoute> {
                 HomeScreen(
-                    onOpenSearch = { navController.navigateToTab(TopLevelDestination.SEARCH) },
+                    onOpenSearch = {
+                        focusSearch = true
+                        navController.navigateToTab(TopLevelDestination.SEARCH)
+                    },
                     onOpenGenre = { genre, filter -> navController.navigate(GenreRoute(genre.key, filter)) },
+                    onOpenMedia = openMedia,
                 )
             }
         }
         navigation<SearchGraph>(startDestination = SearchRoute) {
             composable<SearchRoute> {
-                SearchScreen()
+                SearchScreen(
+                    requestFocus = focusSearch,
+                    onFocusRequested = { focusSearch = false },
+                    onOpenMedia = openMedia,
+                )
             }
         }
         navigation<LibraryGraph>(startDestination = LibraryRoute) {
@@ -47,7 +63,7 @@ fun KinopolkaNavHost(navController: NavHostController, modifier: Modifier = Modi
             )
         }
         composable<GenreRoute> {
-            GenreScreen(onBack = navController::navigateUp)
+            GenreScreen(onBack = navController::navigateUp, onOpenMedia = openMedia)
         }
         composable<AboutRoute> {
             AboutScreen(onBack = navController::navigateUp)

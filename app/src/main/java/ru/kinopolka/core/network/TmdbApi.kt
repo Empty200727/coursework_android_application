@@ -31,8 +31,27 @@ interface TmdbApi {
         @Query("include_adult") includeAdult: Boolean = false,
     ): PagedResponseDto<MediaListItemDto>
 
-    @GET("trending/all/week")
-    suspend fun getTrendingWeek(@Query("page") page: Int = 1): PagedResponseDto<MediaListItemDto>
+    /** Search limited to one type, used by the «Фильмы» and «Сериалы» filters (F-02). */
+    @GET("search/movie")
+    suspend fun searchMovies(
+        @Query("query") query: String,
+        @Query("page") page: Int = 1,
+        @Query("include_adult") includeAdult: Boolean = false,
+    ): PagedResponseDto<MediaListItemDto>
+
+    @GET("search/tv")
+    suspend fun searchTv(
+        @Query("query") query: String,
+        @Query("page") page: Int = 1,
+        @Query("include_adult") includeAdult: Boolean = false,
+    ): PagedResponseDto<MediaListItemDto>
+
+    /** «В тренде за неделю» (F-07); [mediaType] is `all`, `movie` or `tv`. */
+    @GET("trending/{media_type}/week")
+    suspend fun getTrendingWeek(
+        @Path("media_type") mediaType: String = TRENDING_ALL,
+        @Query("page") page: Int = 1,
+    ): PagedResponseDto<MediaListItemDto>
 
     @GET("movie/popular")
     suspend fun getPopularMovies(@Query("page") page: Int = 1): PagedResponseDto<MediaListItemDto>
@@ -78,6 +97,11 @@ interface TmdbApi {
         const val MOVIE_APPEND_TO_RESPONSE = "credits,recommendations,similar"
         const val TV_APPEND_TO_RESPONSE = "aggregate_credits,recommendations,similar"
         const val FALLBACK_LANGUAGE = "en-US"
+        const val TRENDING_ALL = "all"
+
+        /** TMDB returns 20 items per page and at most 500 pages. */
+        const val PAGE_SIZE = 20
+        const val MAX_PAGE = 500
     }
 }
 

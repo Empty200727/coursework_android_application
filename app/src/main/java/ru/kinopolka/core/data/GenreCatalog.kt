@@ -65,7 +65,7 @@ object GenreCatalog {
             val name = movieId?.let { names[MediaType.MOVIE to it] }
                 ?: tvId?.let { names[MediaType.TV to it] }
                 ?: mapping.fallbackName
-            Genre(key = mapping.key, name = name.capitalized(), movieGenreId = movieId, tvGenreId = tvId)
+            Genre(key = mapping.key, name = displayName(name), movieGenreId = movieId, tvGenreId = tvId)
         }
 
         val mappedIds = mappings.flatMapTo(mutableSetOf()) { mapping ->
@@ -80,7 +80,7 @@ object GenreCatalog {
             .map { genre ->
                 Genre(
                     key = "${genre.mediaType.key}-${genre.id}",
-                    name = genre.name.capitalized(),
+                    name = displayName(genre.name),
                     movieGenreId = genre.id.takeIf { genre.mediaType == MediaType.MOVIE },
                     tvGenreId = genre.id.takeIf { genre.mediaType == MediaType.TV },
                 )
@@ -88,6 +88,6 @@ object GenreCatalog {
         return mapped + unmapped
     }
 
-    /** TMDB returns Russian genre names in lower case («боевик»). */
-    private fun String.capitalized(): String = trim().replaceFirstChar { it.titlecase(russian) }
+    /** TMDB returns Russian genre names in lower case («боевик»): «Боевик». */
+    fun displayName(name: String): String = name.trim().replaceFirstChar { it.titlecase(russian) }
 }

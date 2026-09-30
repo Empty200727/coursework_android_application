@@ -36,6 +36,13 @@ class OfflineFirstGenreRepository @Inject constructor(
         .map { entities -> GenreCatalog.merge(entities.map { it.toTmdbGenre() }) }
         .distinctUntilChanged()
 
+    override fun observeGenreNames(): Flow<Map<MediaType, Map<Int, String>>> = genreDao.observeAll()
+        .map { entities ->
+            entities.groupBy { it.mediaType }
+                .mapValues { (_, genres) -> genres.associate { it.genreId to GenreCatalog.displayName(it.name) } }
+        }
+        .distinctUntilChanged()
+
     override suspend fun getGenre(key: String): Genre? = observeGenres().first().firstOrNull { it.key == key }
 
     override suspend fun refresh(force: Boolean): RefreshResult = refreshMutex.withLock {

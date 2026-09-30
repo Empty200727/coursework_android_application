@@ -113,6 +113,24 @@ class TmdbApiTest {
     }
 
     @Test
+    fun `trending and search can be limited to one type`() = runTest {
+        enqueueFixture("trending_all_week.json")
+        enqueueFixture("movie_popular.json")
+        enqueueFixture("tv_popular.json")
+
+        api.getTrendingWeek(mediaType = "tv")
+        api.searchMovies(query = "матрица", page = 2)
+        api.searchTv(query = "тяжкие")
+
+        assertEquals("/3/trending/tv/week", server.takeRequest().url.encodedPath)
+        val movieSearch = server.takeRequest().url
+        assertEquals("/3/search/movie", movieSearch.encodedPath)
+        assertEquals("матрица", movieSearch.queryParameter("query"))
+        assertEquals("2", movieSearch.queryParameter("page"))
+        assertEquals("/3/search/tv", server.takeRequest().url.encodedPath)
+    }
+
+    @Test
     fun `discover sends genre, sort order and minimal vote count`() = runTest {
         enqueueFixture("discover_movie.json")
         enqueueFixture("discover_movie.json")

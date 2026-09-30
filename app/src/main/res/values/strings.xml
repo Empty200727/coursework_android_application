@@ -10,10 +10,27 @@
     <string name="action_retry">Повторить</string>
 
     <string name="home_search_hint">Поиск фильмов и сериалов</string>
-    <string name="home_genres_title">Жанры</string>
-    <string name="genre_movies_and_series">Фильмы и сериалы</string>
-    <string name="genre_movies_only">Только фильмы</string>
-    <string name="genre_series_only">Только сериалы</string>
+    <string name="home_trending">В тренде за неделю</string>
+    <string name="home_popular_movies">Популярные фильмы</string>
+    <string name="home_popular_series">Популярные сериалы</string>
+    <string name="home_empty">Здесь пока ничего нет. Попробуйте обновить позже.</string>
+    <string name="shelf_see_all">Все</string>
+    <string name="shelf_see_all_description">Показать все: %1$s</string>
+    <string name="rating_short">★ %1$s</string>
+
+    <string name="search_hint">Название фильма или сериала</string>
+    <string name="search_clear">Очистить</string>
+    <string name="search_min_length">Введите хотя бы два символа названия</string>
+    <string name="search_empty">Ничего не найдено. Попробуйте другое название.</string>
+    <string name="search_offline">Нет подключения к интернету. Поиск работает только онлайн.</string>
+
+    <string name="genre_title_with_filter">%1$s: %2$s</string>
+    <string name="genre_empty">В этом жанре пока ничего нет</string>
+    <string name="sort_popular">Популярные</string>
+    <string name="sort_rating">По рейтингу</string>
+    <string name="sort_newest">Новые</string>
+
+    <string name="offline_banner">Нет подключения. Показаны сохранённые данные.</string>
 
     <string name="filter_all">Все</string>
     <string name="filter_movies">Фильмы</string>
@@ -27,11 +44,8 @@
     <string name="about_title">О приложении</string>
     <string name="about_version">Версия %1$s</string>
     <string name="about_tmdb_notice" translatable="false">This product uses the TMDB API but is not endorsed or certified by TMDB.</string>
-
-    <string name="placeholder_search">Здесь будет поиск фильмов и сериалов.</string>
     <string name="placeholder_library">Здесь будут списки «Хочу посмотреть», «Смотрел» и «Избранное».</string>
     <string name="placeholder_details">%1$s, TMDB id %2$d. Карточка появится в следующих версиях.</string>
-    <string name="placeholder_genre">Фильтр: %1$s. Полный список жанра появится в следующих версиях.</string>
 
     <string name="error_no_connection">Нет подключения к интернету</string>
     <string name="error_unauthorized">Нет доступа к TMDB. Проверьте TMDB_TOKEN в local.properties.</string>
