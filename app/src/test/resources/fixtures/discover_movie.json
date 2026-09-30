@@ -1,0 +1,23 @@
+{
+  "page": 1,
+  "results": [
+    {
+      "adult": false,
+      "backdrop_path": "/9BBTo63ANSmhC4e6r62OJFuK2GL.jpg",
+      "genre_ids": [28, 12, 878],
+      "id": 603,
+      "original_language": "en",
+      "original_title": "The Matrix",
+      "overview": "Жизнь Томаса Андерсона разделена на две части.",
+      "popularity": 85.3,
+      "poster_path": "/f89U3ADr1oiB1s9GkdPOEpXUk5H.jpg",
+      "release_date": "1999-03-31",
+      "title": "Матрица",
+      "video": false,
+      "vote_average": 8.2,
+      "vote_count": 25643
+    }
+  ],
+  "total_pages": 312,
+  "total_results": 6231
+}

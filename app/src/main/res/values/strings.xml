@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Кинополка</string>
+
+    <string name="tab_home">Главная</string>
+    <string name="tab_search">Поиск</string>
+    <string name="tab_library">Моя полка</string>
+
+    <string name="action_back">Назад</string>
+    <string name="action_retry">Повторить</string>
+
+    <string name="home_search_hint">Поиск фильмов и сериалов</string>
+    <string name="home_genres_title">Жанры</string>
+    <string name="genre_movies_and_series">Фильмы и сериалы</string>
+    <string name="genre_movies_only">Только фильмы</string>
+    <string name="genre_series_only">Только сериалы</string>
+
+    <string name="filter_all">Все</string>
+    <string name="filter_movies">Фильмы</string>
+    <string name="filter_series">Сериалы</string>
+
+    <string name="media_type_movie">Фильм</string>
+    <string name="media_type_tv">Сериал</string>
+
+    <string name="details_title">Карточка</string>
+    <string name="genre_title">Жанр</string>
+    <string name="about_title">О приложении</string>
+    <string name="about_version">Версия %1$s</string>
+    <string name="about_tmdb_notice" translatable="false">This product uses the TMDB API but is not endorsed or certified by TMDB.</string>
+
+    <string name="placeholder_search">Здесь будет поиск фильмов и сериалов.</string>
+    <string name="placeholder_library">Здесь будут списки «Хочу посмотреть», «Смотрел» и «Избранное».</string>
+    <string name="placeholder_details">%1$s, TMDB id %2$d. Карточка появится в следующих версиях.</string>
+    <string name="placeholder_genre">Фильтр: %1$s. Полный список жанра появится в следующих версиях.</string>
+
+    <string name="error_no_connection">Нет подключения к интернету</string>
+    <string name="error_unauthorized">Нет доступа к TMDB. Проверьте TMDB_TOKEN в local.properties.</string>
+    <string name="error_generic">Не удалось загрузить данные</string>
+</resources>

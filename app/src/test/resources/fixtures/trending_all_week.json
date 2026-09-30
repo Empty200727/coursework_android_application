@@ -1,0 +1,37 @@
+{
+  "page": 1,
+  "results": [
+    {
+      "backdrop_path": "/xOMo8BRK7PfcJv9JCnx7s5hj0PX.jpg",
+      "id": 693134,
+      "title": "Дюна: Часть вторая",
+      "original_title": "Dune: Part Two",
+      "overview": "Пол Атрейдес объединяется с Чани и фрименами.",
+      "poster_path": "/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg",
+      "media_type": "movie",
+      "adult": false,
+      "genre_ids": [878, 12],
+      "popularity": 1254.8,
+      "release_date": "2024-02-27",
+      "vote_average": 8.2,
+      "vote_count": 6021
+    },
+    {
+      "backdrop_path": "/2meX1nMdScFOoV4370rqHWKmXhY.jpg",
+      "id": 94997,
+      "name": "Дом Дракона",
+      "original_name": "House of the Dragon",
+      "overview": "За 200 лет до событий «Игры престолов» дом Таргариенов на пике могущества.",
+      "poster_path": "/z2yahl2uefxDCl0nogcRBstwruJ.jpg",
+      "media_type": "tv",
+      "adult": false,
+      "genre_ids": [10765, 18, 10759],
+      "popularity": 980.2,
+      "first_air_date": "2022-08-21",
+      "vote_average": 8.4,
+      "vote_count": 4411
+    }
+  ],
+  "total_pages": 500,
+  "total_results": 10000
+}

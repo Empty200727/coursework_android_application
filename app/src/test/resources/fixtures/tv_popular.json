@@ -1,0 +1,22 @@
+{
+  "page": 1,
+  "results": [
+    {
+      "backdrop_path": "/tmU7GeKVybMWFButWEGl2M4GeiP.jpg",
+      "genre_ids": [18, 80],
+      "id": 1396,
+      "origin_country": ["US"],
+      "original_language": "en",
+      "original_name": "Breaking Bad",
+      "overview": "Школьный учитель химии Уолтер Уайт узнаёт, что болен раком лёгких.",
+      "popularity": 312.5,
+      "poster_path": "/ztkUQFLlC19CCMYHW9o1zWhJRNq.jpg",
+      "first_air_date": "2008-01-20",
+      "name": "Во все тяжкие",
+      "vote_average": 8.9,
+      "vote_count": 15432
+    }
+  ],
+  "total_pages": 500,
+  "total_results": 10000
+}

@@ -1,0 +1,74 @@
+{
+  "adult": false,
+  "backdrop_path": "/tmU7GeKVybMWFButWEGl2M4GeiP.jpg",
+  "created_by": [
+    { "id": 66633, "credit_id": "52542286760ee31328001a7b", "name": "Винс Гиллиган", "gender": 2, "profile_path": "/z3E0DhBg1V1PZVEtS9vfFPzOWYB.jpg" }
+  ],
+  "episode_run_time": [45, 47],
+  "first_air_date": "2008-01-20",
+  "genres": [
+    { "id": 18, "name": "драма" },
+    { "id": 80, "name": "криминал" }
+  ],
+  "homepage": "https://www.sonypictures.com/tv/breakingbad",
+  "id": 1396,
+  "in_production": false,
+  "languages": ["en"],
+  "last_air_date": "2013-09-29",
+  "name": "Во все тяжкие",
+  "number_of_episodes": 62,
+  "number_of_seasons": 5,
+  "origin_country": ["US"],
+  "original_language": "en",
+  "original_name": "Breaking Bad",
+  "overview": "",
+  "popularity": 312.5,
+  "poster_path": "/ztkUQFLlC19CCMYHW9o1zWhJRNq.jpg",
+  "status": "Ended",
+  "type": "Scripted",
+  "vote_average": 8.9,
+  "vote_count": 15432,
+  "aggregate_credits": {
+    "cast": [
+      {
+        "adult": false, "gender": 2, "id": 17419, "known_for_department": "Acting",
+        "name": "Брайан Крэнстон", "original_name": "Bryan Cranston", "popularity": 45.1,
+        "profile_path": "/7Jahy5LZX2Fo8fGJltMreAI49hC.jpg",
+        "roles": [ { "credit_id": "52542282760ee313280017f9", "character": "Уолтер Уайт", "episode_count": 62 } ],
+        "total_episode_count": 62, "order": 0
+      },
+      {
+        "adult": false, "gender": 2, "id": 84497, "known_for_department": "Acting",
+        "name": "Аарон Пол", "original_name": "Aaron Paul", "popularity": 20.5,
+        "profile_path": "/8Kce1utfytAG5m1PbtVoDzmDZJH.jpg",
+        "roles": [
+          { "credit_id": "52542282760ee31328001845", "character": "Джесси (флешбэк)", "episode_count": 1 },
+          { "credit_id": "52542282760ee31328001846", "character": "Джесси Пинкман", "episode_count": 62 }
+        ],
+        "total_episode_count": 62, "order": 1
+      },
+      {
+        "adult": false, "gender": 1, "id": 134531, "known_for_department": "Acting",
+        "name": "Анна Ганн", "original_name": "Anna Gunn", "popularity": 9.8,
+        "profile_path": "/adppyeu1a4REN3khtgmXusrapFi.jpg",
+        "roles": [ { "credit_id": "52542282760ee313280017a9", "character": "Скайлер Уайт", "episode_count": 62 } ],
+        "total_episode_count": 62, "order": 2
+      }
+    ]
+  },
+  "recommendations": {
+    "page": 1,
+    "results": [
+      { "adult": false, "backdrop_path": "/hPea3Qy5Gd6z4kJLUruBbwAH8Rm.jpg", "id": 60059, "name": "Лучше звоните Солу", "original_name": "Better Call Saul", "overview": "История адвоката Джимми Макгилла.", "poster_path": "/fC2HDm5t0kHl7mTm7jxMR31b7by.jpg", "media_type": "tv", "genre_ids": [80, 18], "popularity": 102.4, "first_air_date": "2015-02-08", "vote_average": 8.7, "vote_count": 5390, "origin_country": ["US"] },
+      { "adult": false, "backdrop_path": "/2lZN63c7XpRCFyl2HfFtvZRpqzb.jpg", "id": 559969, "title": "El Camino: Во все тяжкие", "original_title": "El Camino: A Breaking Bad Movie", "overview": "", "poster_path": "/ePXuKdXZuJx8hHMNr2yM4jY2L7Z.jpg", "media_type": "movie", "genre_ids": [80, 18, 53], "popularity": 38.7, "release_date": "2019-10-11", "vote_average": 6.9, "vote_count": 5120 }
+    ],
+    "total_pages": 1,
+    "total_results": 2
+  },
+  "similar": {
+    "page": 1,
+    "results": [],
+    "total_pages": 0,
+    "total_results": 0
+  }
+}

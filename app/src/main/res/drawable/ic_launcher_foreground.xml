@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Adaptive icon foreground: a film frame inside the 66dp safe zone. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:fillType="evenOdd"
+        android:pathData="M34,32h40a4,4 0,0 1,4 4v36a4,4 0,0 1,-4 4h-40a4,4 0,0 1,-4 -4v-36a4,4 0,0 1,4 -4zM36,38v4h4v-4zM36,48v4h4v-4zM36,58v4h4v-4zM36,66v4h4v-4zM68,38v4h4v-4zM68,48v4h4v-4zM68,58v4h4v-4zM68,66v4h4v-4zM46,38v32h16v-32z" />
+    <path
+        android:fillColor="#FFFFC857"
+        android:pathData="M50,46l10,8 -10,8z" />
+</vector>

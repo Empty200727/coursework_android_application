@@ -1,0 +1,66 @@
+{
+  "adult": false,
+  "backdrop_path": "/hZkgoQYus5vegHoetLkCJzb17zJ.jpg",
+  "belongs_to_collection": null,
+  "budget": 63000000,
+  "genres": [
+    { "id": 18, "name": "драма" },
+    { "id": 53, "name": "триллер" }
+  ],
+  "homepage": "http://www.foxmovies.com/movies/fight-club",
+  "id": 550,
+  "imdb_id": "tt0137523",
+  "original_language": "en",
+  "original_title": "Fight Club",
+  "overview": "Сотрудник страховой компании страдает хронической бессонницей и отчаянно пытается вырваться из мучительно скучной жизни.",
+  "popularity": 73.4,
+  "poster_path": "/pB8BM7pdSp6B6Ih7QZ4DrQ3PmJK.jpg",
+  "production_companies": [
+    { "id": 508, "logo_path": "/7cxRWzi4LsVm4Utfpr1hfARNurT.png", "name": "Regency Enterprises", "origin_country": "US" }
+  ],
+  "release_date": "1999-10-15",
+  "revenue": 100853753,
+  "runtime": 139,
+  "status": "Released",
+  "tagline": "Интриги. Хаос. Мыло.",
+  "title": "Бойцовский клуб",
+  "video": false,
+  "vote_average": 8.4,
+  "vote_count": 29870,
+  "credits": {
+    "cast": [
+      { "adult": false, "gender": 2, "id": 819, "known_for_department": "Acting", "name": "Эдвард Нортон", "original_name": "Edward Norton", "popularity": 20.1, "profile_path": "/8nytsqL59SFJTVYVrN72k6qkGgJ.jpg", "cast_id": 4, "character": "Рассказчик", "credit_id": "52fe4250c3a36847f80149f3", "order": 0 },
+      { "adult": false, "gender": 2, "id": 287, "known_for_department": "Acting", "name": "Брэд Питт", "original_name": "Brad Pitt", "popularity": 45.2, "profile_path": "/cckcYc2v0yh1tc9QjRelptcOBko.jpg", "cast_id": 5, "character": "Тайлер Дёрден", "credit_id": "52fe4250c3a36847f80149f7", "order": 1 },
+      { "adult": false, "gender": 1, "id": 1283, "known_for_department": "Acting", "name": "Хелена Бонем Картер", "original_name": "Helena Bonham Carter", "popularity": 18.3, "profile_path": "/DDeITcCpnBd0CkAIRPhggy9bt5.jpg", "cast_id": 7, "character": "Марла Сингер", "credit_id": "52fe4250c3a36847f80149ff", "order": 2 },
+      { "adult": false, "gender": 2, "id": 7470, "known_for_department": "Acting", "name": "Мит Лоаф", "original_name": "Meat Loaf", "popularity": 5.1, "profile_path": "/7gKLR1u46OB8WJ6m06LemNBCMx6.jpg", "cast_id": 6, "character": "Роберт Полсон", "credit_id": "52fe4250c3a36847f80149fb", "order": 3 },
+      { "adult": false, "gender": 2, "id": 7499, "known_for_department": "Acting", "name": "Джаред Лето", "original_name": "Jared Leto", "popularity": 30.4, "profile_path": "/ca3x0OfIKbJppZh8S1Alx3GfUZO.jpg", "cast_id": 31, "character": "Ангельское личико", "credit_id": "52fe4250c3a36847f8014a51", "order": 4 },
+      { "adult": false, "gender": 2, "id": 7471, "known_for_department": "Acting", "name": "Зак Гренье", "original_name": "Zach Grenier", "popularity": 6.0, "profile_path": "/fhUGHoEPTjAMvH8TUQRN6tNUYbP.jpg", "cast_id": 8, "character": "Ричард Честер", "credit_id": "52fe4250c3a36847f8014a03", "order": 5 },
+      { "adult": false, "gender": 2, "id": 7497, "known_for_department": "Acting", "name": "Холт Маккэллани", "original_name": "Holt McCallany", "popularity": 12.9, "profile_path": "/zwZ7mHSvQpNhE9sBI0MrkOP1fHS.jpg", "cast_id": 9, "character": "Механик", "credit_id": "52fe4250c3a36847f8014a07", "order": 6 },
+      { "adult": false, "gender": 2, "id": 7498, "known_for_department": "Acting", "name": "Эйон Бэйли", "original_name": "Eion Bailey", "popularity": 7.1, "profile_path": "/bZLlBt6nmBW5J3b8bYn6MnR7Y6B.jpg", "cast_id": 10, "character": "Рики", "credit_id": "52fe4250c3a36847f8014a0b", "order": 7 },
+      { "adult": false, "gender": 2, "id": 7472, "known_for_department": "Acting", "name": "Ричмонд Аркетт", "original_name": "Richmond Arquette", "popularity": 4.2, "profile_path": null, "cast_id": 11, "character": "Интерн", "credit_id": "52fe4250c3a36847f8014a0f", "order": 8 },
+      { "adult": false, "gender": 2, "id": 7219, "known_for_department": "Acting", "name": "Дэвид Эндрюс", "original_name": "David Andrews", "popularity": 3.9, "profile_path": "/3f3SxNrqgGFa1xbDk3Nq2OvDYzC.jpg", "cast_id": 12, "character": "Томас", "credit_id": "52fe4250c3a36847f8014a13", "order": 9 },
+      { "adult": false, "gender": 1, "id": 68277, "known_for_department": "Acting", "name": "Кристина Кэйзер", "original_name": "Christina Cabot", "popularity": 2.8, "profile_path": null, "cast_id": 13, "character": "Ведущая группы", "credit_id": "52fe4250c3a36847f8014a17", "order": 10 },
+      { "adult": false, "gender": 2, "id": 287, "known_for_department": "Acting", "name": "Брэд Питт", "original_name": "Brad Pitt", "popularity": 45.2, "profile_path": "/cckcYc2v0yh1tc9QjRelptcOBko.jpg", "cast_id": 55, "character": "Тайлер Дёрден (голос)", "credit_id": "52fe4250c3a36847f8014a99", "order": 11 }
+    ],
+    "crew": [
+      { "adult": false, "gender": 2, "id": 7467, "known_for_department": "Directing", "name": "Дэвид Финчер", "job": "Director", "department": "Directing", "credit_id": "52fe4250c3a36847f8014a11" }
+    ]
+  },
+  "recommendations": {
+    "page": 1,
+    "results": [
+      { "adult": false, "backdrop_path": "/wDOY9pJ4DmJlZ1Re1PqjzqWp0Uc.jpg", "id": 807, "title": "Семь", "original_title": "Se7en", "overview": "Детективы Сомерсет и Миллс расследуют серию убийств.", "poster_path": "/6yoghtyTpznpBik8EngEmJskVUO.jpg", "media_type": "movie", "genre_ids": [80, 9648, 53], "popularity": 60.1, "release_date": "1995-09-22", "video": false, "vote_average": 8.4, "vote_count": 20870 },
+      { "adult": false, "backdrop_path": "/5p3k2tK9YZ6ZmwN1Al2W6nmbgHN.jpg", "id": 680, "title": "Криминальное чтиво", "original_title": "Pulp Fiction", "overview": "Двое бандитов Винсент Вега и Джулс Винфилд ведут философские беседы.", "poster_path": "/d5iIlFn5s0ImszYzBPb8JPIfbXD.jpg", "media_type": "movie", "genre_ids": [53, 80], "popularity": 74.3, "release_date": "1994-09-10", "video": false, "vote_average": 8.5, "vote_count": 27990 }
+    ],
+    "total_pages": 2,
+    "total_results": 40
+  },
+  "similar": {
+    "page": 1,
+    "results": [
+      { "adult": false, "backdrop_path": null, "genre_ids": [18], "id": 1954, "original_title": "The Butterfly Effect", "overview": "", "poster_path": "/ojHCeDULAkQK25700fhRU75Tur2.jpg", "release_date": "2004-01-22", "title": "Эффект бабочки", "video": false, "vote_average": 7.6, "vote_count": 5870, "popularity": 25.4 }
+    ],
+    "total_pages": 1,
+    "total_results": 1
+  }
+}
