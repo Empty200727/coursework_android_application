@@ -60,6 +60,13 @@ android {
 
     testOptions {
         unitTests.isIncludeAndroidResources = true
+        unitTests.all {
+            // Robolectric (Android SDK 36) reads FileDescriptor internals, closed by default on JDK 17+.
+            it.jvmArgs(
+                "--add-exports=java.base/jdk.internal.access=ALL-UNNAMED",
+                "--add-opens=java.base/jdk.internal.access=ALL-UNNAMED",
+            )
+        }
     }
 
     packaging {
