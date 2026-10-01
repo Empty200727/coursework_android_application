@@ -16,7 +16,8 @@ Coroutines/Flow, Room (KSP), Paging 3, Coil, Navigation Compose (типобез�
 - Токен TMDB: local.properties -> BuildConfig. Никогда не коммитить.
 - Строки интерфейса — в strings.xml, на русском.
 - Не менять схему Room без миграции и теста.
-- Новый код покрывать тестами. Перед завершением задачи: ./gradlew assembleDebug testDebugUnitTest lint detekt ktlintCheck
+- Новый код покрывать тестами. Перед завершением задачи:
+  ./gradlew assembleDebug testDebugUnitTest lint detekt ktlintCheck koverVerifyCoverage
 
 ## Заметки по сборке
 - AGP 9 со встроенной поддержкой Kotlin: плагин org.jetbrains.kotlin.android не подключается.
@@ -25,3 +26,10 @@ Coroutines/Flow, Room (KSP), Paging 3, Coil, Navigation Compose (типобез�
 - Схемы Room экспортируются в app/schemas — их нужно коммитить.
 - Никогда не использовать OnConflictStrategy.REPLACE для таблицы media: REPLACE удаляет строку
   и каскадно стирает актёров, жанры и ленты. Только @Upsert или частичный @Update.
+- Тесты Room, ViewModel с toRoute, Compose-экраны и UI-сценарии (Hilt, `FakeDataModule`) идут на
+  Robolectric в `src/test`: устройство не нужно. Compose-тесты используют v1 `createComposeRule`:
+  с v2 Paging под Robolectric не отдаёт данные. Локаль экранов в тестах — `ru` (`@Config(qualifiers)`).
+- ATF (`enableAccessibilityChecks`) под Robolectric ничего не находит — доступность проверяет
+  `AccessibilityTest` (48 dp и подписи кликабельных элементов).
+- Покрытие: `koverHtmlReportCoverage`, `koverVerifyCoverage` (≥ 60% для core/data и core/database).
+- Release: R8 и сжатие ресурсов, подпись debug-ключом для установки на устройство.
