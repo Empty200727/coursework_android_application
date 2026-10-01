@@ -117,6 +117,9 @@ dependencies {
     implementation(libs.androidx.hilt.lifecycle.viewmodel.compose)
     ksp(libs.hilt.compiler)
     ksp(libs.kotlin.metadata.jvm)
+    implementation(libs.androidx.hilt.work)
+    ksp(libs.androidx.hilt.compiler)
+    implementation(libs.androidx.work.runtime.ktx)
 
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
@@ -136,6 +139,7 @@ dependencies {
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.turbine)
     testImplementation(libs.androidx.paging.testing)
+    testImplementation(libs.androidx.work.testing)
     testImplementation(libs.okhttp.mockwebserver)
     testImplementation(libs.robolectric)
     testImplementation(libs.androidx.test.core)

@@ -13,6 +13,7 @@ import ru.kinopolka.core.model.LibraryEntry
 import ru.kinopolka.core.model.Media
 import ru.kinopolka.core.model.MediaDetails
 import ru.kinopolka.core.model.MediaKey
+import ru.kinopolka.core.model.MediaType
 import ru.kinopolka.core.model.RelatedKind
 import ru.kinopolka.core.model.TmdbGenre
 
@@ -133,4 +134,25 @@ fun LibraryEntryEntity.toLibraryEntry(): LibraryEntry = LibraryEntry(
     watchedAt = watchedAt?.let(Instant::ofEpochMilli),
     userRating = userRating,
     localPosterPath = localPosterPath,
+)
+
+/** Title card from the cache; works offline with whatever was stored (N-01). */
+fun MediaEntity.toMediaDetails(
+    genreIds: List<Int>,
+    genreNames: Map<Int, String>,
+    cast: List<CastMemberEntity>,
+    recommendations: List<MediaEntity>,
+    similar: List<MediaEntity>,
+): MediaDetails = MediaDetails(
+    media = toMedia(genreIds),
+    genres = genreIds.mapNotNull { id -> genreNames[id]?.let { TmdbGenre(mediaType, id, it) } },
+    runtimeMinutes = runtime.takeIf { mediaType == MediaType.MOVIE },
+    numberOfSeasons = numberOfSeasons.takeIf { mediaType == MediaType.TV },
+    lastAirDate = lastAirDate.toLocalDateOrNull(),
+    inProduction = inProduction,
+    isOverviewFallback = isOverviewFallback,
+    cast = cast.map { it.toCastMember() },
+    recommendations = recommendations.map { it.toMedia() },
+    similar = similar.map { it.toMedia() },
+    isComplete = detailsCachedAt != null,
 )

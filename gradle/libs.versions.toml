@@ -49,6 +49,8 @@ androidx-compose-ui-test-manifest = { module = "androidx.compose.ui:ui-test-mani
 androidx-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
 androidx-compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
 
+androidx-hilt-compiler = { module = "androidx.hilt:hilt-compiler", version.ref = "androidxHilt" }
+androidx-hilt-work = { module = "androidx.hilt:hilt-work", version.ref = "androidxHilt" }
 androidx-hilt-lifecycle-viewmodel-compose = { module = "androidx.hilt:hilt-lifecycle-viewmodel-compose", version.ref = "androidxHilt" }
 androidx-lifecycle-runtime-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "androidxLifecycle" }
 androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "androidxLifecycle" }
@@ -57,6 +59,7 @@ androidx-paging-compose = { module = "androidx.paging:paging-compose", version.r
 androidx-paging-runtime = { module = "androidx.paging:paging-runtime", version.ref = "androidxPaging" }
 androidx-paging-testing = { module = "androidx.paging:paging-testing", version.ref = "androidxPaging" }
 androidx-work-runtime-ktx = { module = "androidx.work:work-runtime-ktx", version.ref = "androidxWork" }
+androidx-work-testing = { module = "androidx.work:work-testing", version.ref = "androidxWork" }
 
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
 androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }

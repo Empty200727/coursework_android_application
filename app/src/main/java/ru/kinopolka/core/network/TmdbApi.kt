@@ -80,14 +80,14 @@ interface TmdbApi {
     @GET("movie/{id}")
     suspend fun getMovieDetails(
         @Path("id") id: Int,
-        @Query("append_to_response") appendToResponse: String = MOVIE_APPEND_TO_RESPONSE,
+        @Query("append_to_response") appendToResponse: String? = MOVIE_APPEND_TO_RESPONSE,
         @Query("language") language: String? = null,
     ): MovieDetailsDto
 
     @GET("tv/{id}")
     suspend fun getTvDetails(
         @Path("id") id: Int,
-        @Query("append_to_response") appendToResponse: String = TV_APPEND_TO_RESPONSE,
+        @Query("append_to_response") appendToResponse: String? = TV_APPEND_TO_RESPONSE,
         @Query("language") language: String? = null,
     ): TvDetailsDto
 

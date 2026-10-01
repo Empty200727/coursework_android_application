@@ -8,6 +8,7 @@
 
     <string name="action_back">Назад</string>
     <string name="action_retry">Повторить</string>
+    <string name="action_undo">Отменить</string>
 
     <string name="home_search_hint">Поиск фильмов и сериалов</string>
     <string name="home_trending">В тренде за неделю</string>
@@ -40,14 +41,57 @@
     <string name="media_type_tv">Сериал</string>
 
     <string name="details_title">Карточка</string>
+    <string name="details_ongoing">н. в.</string>
+    <string name="details_runtime">%1$d ч %2$d мин</string>
+    <string name="details_runtime_minutes">%1$d мин</string>
+    <string name="details_status_want">Хочу посмотреть</string>
+    <string name="details_status_watched">Смотрел</string>
+    <string name="details_favorite_add">Добавить в избранное</string>
+    <string name="details_favorite_remove">Убрать из избранного</string>
+    <string name="details_overview_english">Описание на английском</string>
+    <string name="details_overview_more">Ещё</string>
+    <string name="details_overview_less">Свернуть</string>
+    <string name="details_no_overview">Описания пока нет</string>
+    <string name="details_cast">В ролях</string>
+    <string name="details_related">Похожие</string>
+
+    <string name="library_tab_want">Хочу</string>
+    <string name="library_tab_watched">Смотрел</string>
+    <string name="library_tab_favorites">Избранное</string>
+    <string name="library_tab_count">%1$s (%2$d)</string>
+    <string name="library_sort">Сортировка</string>
+    <string name="library_sort_added">По дате добавления</string>
+    <string name="library_sort_title">По названию</string>
+    <string name="library_sort_rating">По рейтингу</string>
+    <string name="library_remove">Удалить из списка «%1$s»</string>
+    <string name="library_removed">«%1$s» удалено из списка «%2$s»</string>
+    <string name="library_empty_want">Добавляйте сюда то, что хотите посмотреть</string>
+    <string name="library_empty_watched">Здесь появятся просмотренные фильмы и сериалы</string>
+    <string name="library_empty_favorites">Здесь появится избранное</string>
+    <string name="library_find_something">Найти, что посмотреть</string>
     <string name="genre_title">Жанр</string>
     <string name="about_title">О приложении</string>
     <string name="about_version">Версия %1$s</string>
+    <string name="about_description">Каталог фильмов и сериалов с личной медиатекой, которая работает без интернета.</string>
+    <string name="about_data_source">Данные и изображения</string>
+    <string name="about_tmdb_logo">Логотип TMDB</string>
+    <string name="about_tmdb_link">themoviedb.org</string>
     <string name="about_tmdb_notice" translatable="false">This product uses the TMDB API but is not endorsed or certified by TMDB.</string>
-    <string name="placeholder_library">Здесь будут списки «Хочу посмотреть», «Смотрел» и «Избранное».</string>
-    <string name="placeholder_details">%1$s, TMDB id %2$d. Карточка появится в следующих версиях.</string>
 
     <string name="error_no_connection">Нет подключения к интернету</string>
     <string name="error_unauthorized">Нет доступа к TMDB. Проверьте TMDB_TOKEN в local.properties.</string>
     <string name="error_generic">Не удалось загрузить данные</string>
+
+    <plurals name="details_seasons">
+        <item quantity="one">%d сезон</item>
+        <item quantity="few">%d сезона</item>
+        <item quantity="many">%d сезонов</item>
+        <item quantity="other">%d сезона</item>
+    </plurals>
+    <plurals name="details_votes">
+        <item quantity="one">%s оценка</item>
+        <item quantity="few">%s оценки</item>
+        <item quantity="many">%s оценок</item>
+        <item quantity="other">%s оценки</item>
+    </plurals>
 </resources>

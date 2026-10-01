@@ -79,6 +79,17 @@ interface MediaDao {
     )
     suspend fun deleteUnusedCachedBefore(threshold: Long): Int
 
+    /** Titles of the user's library; they are never removed by the cache cleanup. */
+    @Query(
+        """
+        SELECT * FROM media WHERE EXISTS (
+            SELECT 1 FROM library_entry
+            WHERE library_entry.media_type = media.media_type AND library_entry.tmdb_id = media.tmdb_id
+        )
+        """,
+    )
+    fun observeLibraryMedia(): Flow<List<MediaEntity>>
+
     @Query("SELECT COUNT(*) FROM media")
     suspend fun count(): Int
 }

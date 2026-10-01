@@ -11,7 +11,6 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
-import androidx.navigation.toRoute
 import ru.kinopolka.core.model.MediaKey
 import ru.kinopolka.feature.about.AboutScreen
 import ru.kinopolka.feature.details.DetailsScreen
@@ -53,14 +52,18 @@ fun KinopolkaNavHost(navController: NavHostController, modifier: Modifier = Modi
         }
         navigation<LibraryGraph>(startDestination = LibraryRoute) {
             composable<LibraryRoute> {
-                LibraryScreen(onOpenAbout = { navController.navigate(AboutRoute) })
+                LibraryScreen(
+                    onOpenAbout = { navController.navigate(AboutRoute) },
+                    onOpenMedia = openMedia,
+                    onFindSomething = {
+                        focusSearch = true
+                        navController.navigateToTab(TopLevelDestination.SEARCH)
+                    },
+                )
             }
         }
-        composable<DetailsRoute> { entry ->
-            DetailsScreen(
-                route = entry.toRoute(),
-                onBack = navController::navigateUp,
-            )
+        composable<DetailsRoute> {
+            DetailsScreen(onBack = navController::navigateUp, onOpenMedia = openMedia)
         }
         composable<GenreRoute> {
             GenreScreen(onBack = navController::navigateUp, onOpenMedia = openMedia)

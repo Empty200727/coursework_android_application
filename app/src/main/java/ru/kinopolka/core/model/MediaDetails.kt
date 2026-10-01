@@ -19,7 +19,12 @@ data class MediaDetails(
     val cast: List<CastMember>,
     val recommendations: List<Media>,
     val similar: List<Media>,
-)
+    /** `false` while only list data is cached: the full card has not been loaded yet. */
+    val isComplete: Boolean = true,
+) {
+    /** F-10: recommendations first; if TMDB has none, similar titles. */
+    val related: List<Media> get() = recommendations.ifEmpty { similar }
+}
 
 /** Actor in the title card (F-09). */
 data class CastMember(

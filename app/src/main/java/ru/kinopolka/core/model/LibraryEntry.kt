@@ -25,3 +25,27 @@ data class LibraryEntry(
     /** An entry with no status and no favorite flag must be removed from the database. */
     val isEmpty: Boolean get() = watchStatus == WatchStatus.NONE && !isFavorite
 }
+
+/** A library entry with the cached title data for «Моя полка». */
+data class LibraryItem(val entry: LibraryEntry, val media: Media)
+
+/** Tabs of «Моя полка» (F-12). */
+enum class LibraryTab {
+    WANT,
+    WATCHED,
+    FAVORITES,
+    ;
+
+    fun contains(entry: LibraryEntry): Boolean = when (this) {
+        WANT -> entry.watchStatus == WatchStatus.WANT
+        WATCHED -> entry.watchStatus == WatchStatus.WATCHED
+        FAVORITES -> entry.isFavorite
+    }
+}
+
+/** Sort orders of «Моя полка» (F-12). */
+enum class LibrarySort {
+    ADDED,
+    TITLE,
+    RATING,
+}

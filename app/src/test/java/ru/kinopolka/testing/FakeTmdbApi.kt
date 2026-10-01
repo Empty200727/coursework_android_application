@@ -30,6 +30,11 @@ class FakeTmdbApi : TmdbApi {
     var search: suspend (endpoint: String, query: String, page: Int) -> Page =
         { _, _, _ -> Fixtures.parse("search_multi.json") }
 
+    var movieDetails: suspend (id: Int, language: String?) -> MovieDetailsDto =
+        { _, _ -> Fixtures.parse("movie_details_550.json") }
+    var tvDetails: suspend (id: Int, language: String?) -> TvDetailsDto =
+        { _, _ -> Fixtures.parse("tv_details_1396.json") }
+
     /** Thrown by every call when set. */
     var failure: Throwable? = null
 
@@ -104,11 +109,15 @@ class FakeTmdbApi : TmdbApi {
         return discoverTvPage(genreId, sortBy, page)
     }
 
-    override suspend fun getMovieDetails(id: Int, appendToResponse: String, language: String?): MovieDetailsDto =
-        throw UnsupportedOperationException()
+    override suspend fun getMovieDetails(id: Int, appendToResponse: String?, language: String?): MovieDetailsDto {
+        record("movie/$id:${appendToResponse.orEmpty()}:${language.orEmpty()}")
+        return movieDetails(id, language)
+    }
 
-    override suspend fun getTvDetails(id: Int, appendToResponse: String, language: String?): TvDetailsDto =
-        throw UnsupportedOperationException()
+    override suspend fun getTvDetails(id: Int, appendToResponse: String?, language: String?): TvDetailsDto {
+        record("tv/$id:${appendToResponse.orEmpty()}:${language.orEmpty()}")
+        return tvDetails(id, language)
+    }
 
     companion object {
         fun httpError(code: Int): HttpException = HttpException(Response.error<Any>(code, "{}".toResponseBody()))

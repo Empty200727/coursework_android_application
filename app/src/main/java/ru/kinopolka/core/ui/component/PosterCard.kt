@@ -24,6 +24,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
+import java.io.File
 import java.util.Locale
 import ru.kinopolka.BuildConfig
 import ru.kinopolka.R
@@ -80,8 +81,11 @@ fun PosterImage(
     title: String,
     modifier: Modifier = Modifier,
     size: ImageSize = ImageSize.POSTER_LIST,
+    localPath: String? = null,
 ) {
-    val url = tmdbImageUrl(posterPath, size, BuildConfig.TMDB_IMAGE_BASE_URL)
+    // A poster saved for the library is shown from the file, also without network (N-01).
+    val model: Any? = localPath?.let(::File)?.takeIf { it.isFile }
+        ?: tmdbImageUrl(posterPath, size, BuildConfig.TMDB_IMAGE_BASE_URL)
     Box(
         modifier = modifier
             .aspectRatio(POSTER_ASPECT_RATIO)
@@ -101,9 +105,9 @@ fun PosterImage(
                 .padding(8.dp)
                 .clearAndSetSemantics {},
         )
-        if (url != null) {
+        if (model != null) {
             AsyncImage(
-                model = url,
+                model = model,
                 // The title is shown next to the poster, so the image itself is decorative.
                 contentDescription = null,
                 contentScale = ContentScale.Crop,

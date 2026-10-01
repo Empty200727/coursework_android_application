@@ -11,6 +11,8 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
@@ -30,10 +32,12 @@ fun KinopolkaScaffold(
     modifier: Modifier = Modifier,
     onBack: (() -> Unit)? = null,
     actions: @Composable RowScope.() -> Unit = {},
+    snackbarHostState: SnackbarHostState? = null,
     content: @Composable (Modifier) -> Unit,
 ) {
     Scaffold(
         modifier = modifier,
+        snackbarHost = { snackbarHostState?.let { SnackbarHost(it) } },
         topBar = {
             TopAppBar(
                 title = { Text(title) },
@@ -52,24 +56,5 @@ fun KinopolkaScaffold(
         },
     ) { innerPadding ->
         content(Modifier.padding(innerPadding))
-    }
-}
-
-/** Centered message used by screens that are implemented in later iterations. */
-@Composable
-fun PlaceholderContent(text: String, modifier: Modifier = Modifier, extra: @Composable ColumnScope.() -> Unit = {}) {
-    Column(
-        modifier = modifier
-            .fillMaxSize()
-            .padding(24.dp),
-        verticalArrangement = Arrangement.spacedBy(12.dp, Alignment.CenterVertically),
-        horizontalAlignment = Alignment.CenterHorizontally,
-    ) {
-        Text(
-            text = text,
-            style = MaterialTheme.typography.bodyLarge,
-            textAlign = TextAlign.Center,
-        )
-        extra()
     }
 }
