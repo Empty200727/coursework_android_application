@@ -1,5 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="window_background">#FFFFF8F7</color>
+    <!-- Brand palette: cinema red with warm amber accents. Used when dynamic color is unavailable. -->
+    <color name="brand_primary">#FFA4262C</color>
+    <color name="brand_on_primary">#FFFFFFFF</color>
+    <color name="brand_primary_container">#FFFFDAD7</color>
+    <color name="brand_on_primary_container">#FF410006</color>
+    <color name="brand_secondary">#FF775653</color>
+    <color name="brand_on_secondary">#FFFFFFFF</color>
+    <color name="brand_secondary_container">#FFFFDAD7</color>
+    <color name="brand_on_secondary_container">#FF2C1513</color>
+    <color name="brand_tertiary">#FF745B0C</color>
+    <color name="brand_on_tertiary">#FFFFFFFF</color>
+    <color name="brand_tertiary_container">#FFFFE08C</color>
+    <color name="brand_on_tertiary_container">#FF241A00</color>
+    <color name="brand_background">#FFFFF8F7</color>
+    <color name="brand_on_background">#FF231918</color>
+    <color name="brand_surface_variant">#FFF5DDDB</color>
+    <color name="brand_on_surface_variant">#FF534342</color>
+    <color name="brand_outline">#FF857371</color>
+    <color name="brand_error">#FFBA1A1A</color>
+    <color name="brand_on_error">#FFFFFFFF</color>
+    <color name="brand_error_container">#FFFFDAD6</color>
+    <color name="brand_on_error_container">#FF410002</color>
+
+    <color name="window_background">@color/brand_background</color>
     <color name="ic_launcher_background">#FFA4262C</color>
 </resources>

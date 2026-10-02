@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="shelf_spacing">12dp</dimen>
+    <!-- Minimum width of a cell of the genre grid (F-06). -->
+    <dimen name="grid_min_cell">110dp</dimen>
+    <dimen name="grid_spacing">12dp</dimen>
+    <dimen name="message_padding">24dp</dimen>
+    <dimen name="swipe_icon_margin">24dp</dimen>
+    <dimen name="message_padding_short">8dp</dimen>
+</resources>

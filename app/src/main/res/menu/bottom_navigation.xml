@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Item ids are the ids of the tab graphs: NavigationUI keeps a back stack per tab. -->
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/home_graph"
+        android:icon="@drawable/ic_home"
+        android:title="@string/tab_home" />
+    <item
+        android:id="@+id/search_graph"
+        android:icon="@drawable/ic_search"
+        android:title="@string/tab_search" />
+    <item
+        android:id="@+id/library_graph"
+        android:icon="@drawable/ic_library"
+        android:title="@string/tab_library" />
+</menu>

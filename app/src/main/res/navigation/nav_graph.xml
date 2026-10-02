@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Navigation graph (docs/PLAN.md, section 7). Each bottom navigation tab is a nested graph with its
+  own back stack. Details, genre and about screens are outside the tab graphs: the tab from which
+  they were opened stays selected. Only the type and id of a title are passed as arguments.
+-->
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/home_graph">
+
+    <navigation
+        android:id="@+id/home_graph"
+        app:startDestination="@id/homeFragment">
+        <fragment
+            android:id="@+id/homeFragment"
+            android:name="ru.kinopolka.feature.home.HomeFragment"
+            android:label="@string/tab_home" />
+    </navigation>
+
+    <navigation
+        android:id="@+id/search_graph"
+        app:startDestination="@id/searchFragment">
+        <fragment
+            android:id="@+id/searchFragment"
+            android:name="ru.kinopolka.feature.search.SearchFragment"
+            android:label="@string/tab_search" />
+    </navigation>
+
+    <navigation
+        android:id="@+id/library_graph"
+        app:startDestination="@id/libraryFragment">
+        <fragment
+            android:id="@+id/libraryFragment"
+            android:name="ru.kinopolka.feature.library.LibraryFragment"
+            android:label="@string/tab_library" />
+    </navigation>
+
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="ru.kinopolka.feature.details.DetailsFragment"
+        android:label="@string/details_title">
+        <argument
+            android:name="mediaType"
+            app:argType="string" />
+        <argument
+            android:name="id"
+            app:argType="integer" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/genreFragment"
+        android:name="ru.kinopolka.feature.genre.GenreFragment"
+        android:label="@string/genre_title">
+        <argument
+            android:name="genreKey"
+            app:argType="string" />
+        <argument
+            android:name="filter"
+            android:defaultValue="ALL"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="ru.kinopolka.feature.about.AboutFragment"
+        android:label="@string/about_title" />
+</navigation>

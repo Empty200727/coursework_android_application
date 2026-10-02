@@ -1,31 +1,30 @@
 # R8 rules of the release build.
 #
-# kotlinx.serialization, Retrofit, OkHttp, Room, Hilt and Coil ship their own consumer rules
-# (META-INF/com.android.tools/r8). The rules below make the app-specific requirements explicit;
-# the release mapping was checked: DTO and route serializers keep `Companion` and `serializer()`.
+# Retrofit, OkHttp, Gson, Room, Hilt, Glide, Paging and WorkManager ship their own consumer rules
+# (META-INF/com.android.tools/r8). The rules below make the app-specific requirements explicit.
 
-# --- kotlinx.serialization ---------------------------------------------------------------
-# Retrofit's converter and type-safe navigation look serializers up by reflection
-# (`serializer(Type)`): keep the generated serializers and the companion accessors.
--keepattributes RuntimeVisibleAnnotations, AnnotationDefault, InnerClasses
--keep,includedescriptorclasses class ru.kinopolka.**$$serializer { *; }
--keepclassmembers class ru.kinopolka.** {
-    *** Companion;
+# --- Gson --------------------------------------------------------------------------------
+# DTOs are Java records read by reflection: their names may be obfuscated, but the canonical
+# constructor and the record components with @SerializedName must stay. Records also need the
+# Record attribute to be recognised as records at runtime.
+-keepattributes Signature, RuntimeVisibleAnnotations, AnnotationDefault, InnerClasses, Record
+-keep class ru.kinopolka.core.network.model.** {
+    <init>(...);
+    <fields>;
 }
--keepclasseswithmembers class ru.kinopolka.** {
-    kotlinx.serialization.KSerializer serializer(...);
-}
-# Serializable objects (navigation graphs and routes without arguments).
--keepclassmembers @kotlinx.serialization.Serializable class ru.kinopolka.** {
-    public static ** INSTANCE;
-}
+# Generic types such as PagedResponseDto<MediaListItemDto> are read through TypeToken.
+-keep,allowobfuscation,allowshrinking class com.google.gson.reflect.TypeToken
+-keep,allowobfuscation,allowshrinking class * extends com.google.gson.reflect.TypeToken
 
 # --- Retrofit ----------------------------------------------------------------------------
-# Generic return types of the suspend API methods (PagedResponseDto<MediaListItemDto>) must
-# survive: the converter needs the full type.
--keepattributes Signature, Exceptions, RuntimeVisibleParameterAnnotations
+# The converter needs the full generic return types of the API methods.
+-keepattributes Exceptions, RuntimeVisibleParameterAnnotations
 -keep,allowobfuscation,allowshrinking interface ru.kinopolka.core.network.TmdbApi
--keep,allowobfuscation,allowshrinking class kotlin.coroutines.Continuation
+-keep,allowobfuscation,allowshrinking class retrofit2.Call
+
+# --- Views -------------------------------------------------------------------------------
+# Custom views and fragments are created from XML and the navigation graph by name.
+-keep class ru.kinopolka.core.ui.AspectRatioFrameLayout { <init>(...); }
 
 # --- Stack traces ------------------------------------------------------------------------
 -keepattributes SourceFile, LineNumberTable

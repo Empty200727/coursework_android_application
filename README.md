@@ -1,7 +1,7 @@
 # Кинополка
 
 Android-приложение для поиска фильмов и сериалов через [TMDB API](https://developer.themoviedb.org/)
-и ведения личной медиатеки, которая работает без сети. Курсовой проект.
+и ведения личной медиатеки, которая работает без сети. Курсовой проект на Java.
 
 - **Главная** — «В тренде за неделю», популярные фильмы и сериалы, 8 полок жанров, фильтр
   «Все / Фильмы / Сериалы».
@@ -47,36 +47,38 @@ Android-приложение для поиска фильмов и сериал�
 | `./gradlew assembleDebug` | Debug-сборка (с LeakCanary) |
 | `./gradlew assembleRelease` | Release-сборка с R8: `app/build/outputs/apk/release/app-release.apk` |
 | `./gradlew testDebugUnitTest` | Все автотесты, включая UI-сценарии и тесты базы на Robolectric — без устройства |
-| `./gradlew lint detekt ktlintCheck` | Статический анализ; `./gradlew ktlintFormat` исправляет оформление |
-| `./gradlew koverHtmlReportCoverage koverVerifyCoverage` | Покрытие `core/data` и `core/database` (цель — от 60%) |
+| `./gradlew lint checkstyle` | Статический анализ: Android Lint и стиль кода Java |
+| `./gradlew coverageReport coverageVerify` | Покрытие JaCoCo `core/data` и `core/database` (цель — от 60%): `app/build/reports/jacoco/coverageReport/html` |
 
 Release-APK подписан debug-ключом, чтобы его можно было установить на устройство для
 демонстрации; для публикации понадобился бы собственный ключ.
 
 ## Архитектура
 
-MVVM с однонаправленным потоком данных: экран получает один `StateFlow<UiState>` из ViewModel,
-репозитории читают Room и обновляют его из сети (офлайн-first).
+MVVM с однонаправленным потоком данных: фрагмент наблюдает один `LiveData<UiState>` из ViewModel,
+репозитории читают Room и обновляют его из сети (офлайн-first). Сетевые запросы и запись в базу идут
+в пуле потоков `AppExecutors`, экраны получают изменения через LiveData из Room.
 
 ```
-feature/*        экраны, ViewModel и UiState: home, search, genre, details, library, about
-core/ui          тема Material 3 и общие компоненты (постер, полка, скелеты, состояния)
+feature/*        фрагменты, адаптеры, ViewModel и UiState: home, search, genre, details, library, about
+core/ui          общие View-компоненты: постер, полка, фильтр, состояния, загрузка изображений
 core/data        репозитории, политика кэша, Paging, медиатека, очистка кэша (WorkManager)
 core/database    Room: сущности, DAO, схема в app/schemas
-core/network     Retrofit API TMDB, DTO, интерцепторы токена, языка и повтора при 429
-core/model       доменные модели
+core/network     Retrofit API TMDB, DTO (записи Java), интерцепторы токена, языка и повтора при 429
+core/model       доменные модели (записи Java)
 ```
 
-Стек: Kotlin, Jetpack Compose, Material 3, Navigation Compose, Hilt, Room, Retrofit, OkHttp,
-kotlinx.serialization, Coroutines/Flow, Paging 3, Coil, WorkManager. Версии — в
-`gradle/libs.versions.toml`.
+Стек: Java 17, фрагменты и XML-разметка с ViewBinding, Material Components (Material 3),
+Navigation Component, Hilt, Room, Retrofit, OkHttp, Gson, LiveData, Paging 3, Glide, WorkManager.
+Версии — в `gradle/libs.versions.toml`.
 
 ## Тестирование
 
-Все автотесты запускаются на JVM, без устройства: unit-тесты ViewModel, репозиториев, мапперов и
-политики кэша; сеть — на MockWebServer с JSON-фикстурами TMDB; база — на Room in-memory и
-`MigrationTestHelper`; три сквозных UI-сценария (поиск → карточка → «Хочу посмотреть»,
-«Моя полка» без сети, удаление с отменой) и проверки доступности — на Robolectric с Hilt.
+Все автотесты (JUnit 4) запускаются на JVM, без устройства: unit-тесты ViewModel, репозиториев,
+мапперов и политики кэша; сеть — на MockWebServer с JSON-фикстурами TMDB; база — на Room in-memory и
+`MigrationTestHelper`; смоук-тесты экранов, три сквозных UI-сценария (поиск → карточка →
+«Хочу посмотреть», «Моя полка» без сети, удаление с отменой) и проверки доступности — Espresso на
+Robolectric с Hilt.
 Ручные проверки перед защитой перечислены в [docs/AUDIT.md](docs/AUDIT.md).
 
 ---

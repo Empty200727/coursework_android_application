@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 2:3 poster; the placeholder with the title stays visible while the image loads or if it fails. -->
+<ru.kinopolka.core.ui.AspectRatioFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_poster"
+    android:importantForAccessibility="noHideDescendants">
+
+    <TextView
+        android:id="@+id/poster_placeholder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="4"
+        android:padding="8dp"
+        android:textAppearance="?attr/textAppearanceLabelMedium"
+        android:textColor="?attr/colorOnSurfaceVariant" />
+
+    <ImageView
+        android:id="@+id/poster_image"
+        android:importantForAccessibility="no"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop" />
+</ru.kinopolka.core.ui.AspectRatioFrameLayout>

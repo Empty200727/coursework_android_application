@@ -1,4 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="window_background">#FF1A1111</color>
+    <color name="brand_primary">#FFFFB3AE</color>
+    <color name="brand_on_primary">#FF68000F</color>
+    <color name="brand_primary_container">#FF850D19</color>
+    <color name="brand_on_primary_container">#FFFFDAD7</color>
+    <color name="brand_secondary">#FFE7BDB8</color>
+    <color name="brand_on_secondary">#FF442927</color>
+    <color name="brand_secondary_container">#FF5D3F3C</color>
+    <color name="brand_on_secondary_container">#FFFFDAD7</color>
+    <color name="brand_tertiary">#FFE5C36C</color>
+    <color name="brand_on_tertiary">#FF3D2E00</color>
+    <color name="brand_tertiary_container">#FF594400</color>
+    <color name="brand_on_tertiary_container">#FFFFE08C</color>
+    <color name="brand_background">#FF1A1111</color>
+    <color name="brand_on_background">#FFF1DEDC</color>
+    <color name="brand_surface_variant">#FF534342</color>
+    <color name="brand_on_surface_variant">#FFD8C2BF</color>
+    <color name="brand_outline">#FFA08C8A</color>
+    <color name="brand_error">#FFFFB4AB</color>
+    <color name="brand_on_error">#FF690005</color>
+    <color name="brand_error_container">#FF93000A</color>
+    <color name="brand_on_error_container">#FFFFDAD6</color>
+
+    <color name="window_background">@color/brand_background</color>
 </resources>

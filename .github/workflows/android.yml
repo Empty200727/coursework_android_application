@@ -21,7 +21,7 @@ jobs:
 
       # Tests use fixtures and fakes: no TMDB token is needed.
       - name: Build, tests and static analysis
-        run: ./gradlew assembleDebug testDebugUnitTest lint detekt ktlintCheck koverVerifyCoverage --continue
+        run: ./gradlew assembleDebug testDebugUnitTest lint checkstyle coverageVerify --continue
 
       - name: Upload reports
         if: always()

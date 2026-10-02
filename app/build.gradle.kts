@@ -1,14 +1,11 @@
 import java.util.Properties
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.compose)
-    alias(libs.plugins.kotlin.serialization)
-    alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
     alias(libs.plugins.room)
-    alias(libs.plugins.kover)
+    checkstyle
+    jacoco
 }
 
 // N-09: the TMDB token lives only in local.properties (ignored by Git) or in the
@@ -33,7 +30,7 @@ android {
         minSdk = libs.versions.minSdk.get().toInt()
         targetSdk = libs.versions.targetSdk.get().toInt()
         versionCode = 1
-        versionName = "0.1.0"
+        versionName = "1.0.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
@@ -43,6 +40,10 @@ android {
     }
 
     buildTypes {
+        debug {
+            // JaCoCo coverage of unit tests: ./gradlew createDebugUnitTestCoverageReport
+            enableUnitTestCoverage = true
+        }
         release {
             isMinifyEnabled = true
             isShrinkResources = true
@@ -59,8 +60,8 @@ android {
     }
 
     buildFeatures {
-        compose = true
         buildConfig = true
+        viewBinding = true
     }
 
     // Exported Room schemas are read by MigrationTestHelper. Robolectric sees only the merged
@@ -75,6 +76,11 @@ android {
                 "--add-exports=java.base/jdk.internal.access=ALL-UNNAMED",
                 "--add-opens=java.base/jdk.internal.access=ALL-UNNAMED",
             )
+            // Robolectric loads Android classes in its own class loader.
+            it.extensions.configure<JacocoTaskExtension> {
+                isIncludeNoLocationClasses = true
+                excludes = listOf("jdk.internal.*")
+            }
         }
     }
 
@@ -90,103 +96,129 @@ android {
     }
 }
 
-kotlin {
-    compilerOptions {
-        jvmTarget.set(JvmTarget.JVM_17)
-    }
-}
-
-ksp {
-    arg("room.generateKotlin", "true")
-}
-
 room {
     // exportSchema = true: every schema version is stored in the repository for migration tests.
     schemaDirectory("$projectDir/schemas")
 }
 
+jacoco {
+    toolVersion = libs.versions.jacoco.get()
+}
+
+checkstyle {
+    toolVersion = libs.versions.checkstyle.get()
+    configFile = rootProject.file("config/checkstyle/checkstyle.xml")
+    maxWarnings = 0
+}
+
+// Java code style: ./gradlew checkstyle
+val checkstyleTask = tasks.register<Checkstyle>("checkstyle") {
+    group = "verification"
+    description = "Checks the Java sources with Checkstyle."
+    source("src")
+    include("**/*.java")
+    classpath = files()
+    reports {
+        html.required.set(true)
+        xml.required.set(false)
+    }
+}
+
+// Coverage rule (docs/PLAN.md, section 8): at least 60% of the lines in core/data and core/database.
+val coverageClasses = fileTree(layout.buildDirectory.dir("intermediates/javac/debug/compileDebugJavaWithJavac/classes")) {
+    include("ru/kinopolka/core/data/**", "ru/kinopolka/core/database/**")
+    exclude(
+        "**/*_Impl*", "**/*_Factory*", "**/*_MembersInjector*", "**/*Hilt_*", "**/*_HiltModules*",
+        "**/di/**", "**/BuildConfig*",
+    )
+}
+val coverageData = layout.buildDirectory.file("outputs/unit_test_code_coverage/debugUnitTest/testDebugUnitTest.exec")
+
+tasks.register<JacocoReport>("coverageReport") {
+    group = "verification"
+    description = "HTML coverage report of core/data and core/database."
+    dependsOn("testDebugUnitTest")
+    classDirectories.setFrom(coverageClasses)
+    sourceDirectories.setFrom("src/main/java")
+    executionData.setFrom(coverageData)
+    reports {
+        html.required.set(true)
+        xml.required.set(false)
+    }
+}
+
+tasks.register<JacocoCoverageVerification>("coverageVerify") {
+    group = "verification"
+    description = "Fails when less than 60% of the lines in core/data and core/database are covered."
+    dependsOn("testDebugUnitTest")
+    classDirectories.setFrom(coverageClasses)
+    sourceDirectories.setFrom("src/main/java")
+    executionData.setFrom(coverageData)
+    violationRules {
+        rule {
+            limit {
+                counter = "LINE"
+                minimum = "0.60".toBigDecimal()
+            }
+        }
+    }
+}
+
+tasks.named("check") { dependsOn(checkstyleTask) }
+
+tasks.withType<JavaCompile>().configureEach {
+    options.compilerArgs.addAll(listOf("-Xlint:deprecation", "-Xlint:unchecked"))
+}
+
 dependencies {
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.activity)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.core)
+    implementation(libs.androidx.fragment)
+    implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.recyclerview)
+    implementation(libs.androidx.swiperefreshlayout)
+    implementation(libs.material)
 
-    val composeBom = platform(libs.androidx.compose.bom)
-    implementation(composeBom)
-    implementation(libs.androidx.compose.ui)
-    implementation(libs.androidx.compose.foundation)
-    implementation(libs.androidx.compose.material3)
-    implementation(libs.androidx.compose.ui.tooling.preview)
-    debugImplementation(libs.androidx.compose.ui.tooling)
-
-    implementation(libs.androidx.lifecycle.runtime.compose)
-    implementation(libs.androidx.lifecycle.viewmodel.compose)
-    implementation(libs.androidx.navigation.compose)
-    implementation(libs.androidx.paging.compose)
+    implementation(libs.androidx.lifecycle.livedata)
+    implementation(libs.androidx.lifecycle.viewmodel)
+    implementation(libs.androidx.lifecycle.viewmodel.savedstate)
+    implementation(libs.androidx.navigation.fragment)
+    implementation(libs.androidx.navigation.ui)
+    implementation(libs.androidx.paging.runtime)
+    implementation(libs.androidx.paging.guava)
+    implementation(libs.guava)
 
     implementation(libs.hilt.android)
-    implementation(libs.androidx.hilt.lifecycle.viewmodel.compose)
-    ksp(libs.hilt.compiler)
-    ksp(libs.kotlin.metadata.jvm)
+    annotationProcessor(libs.hilt.compiler)
     implementation(libs.androidx.hilt.work)
-    ksp(libs.androidx.hilt.compiler)
-    implementation(libs.androidx.work.runtime.ktx)
+    annotationProcessor(libs.androidx.hilt.compiler)
+    implementation(libs.androidx.work.runtime)
 
     implementation(libs.androidx.room.runtime)
-    implementation(libs.androidx.room.ktx)
-    ksp(libs.androidx.room.compiler)
+    annotationProcessor(libs.androidx.room.compiler)
 
-    implementation(libs.kotlinx.coroutines.android)
-    implementation(libs.kotlinx.serialization.json)
     implementation(libs.okhttp)
     implementation(libs.okhttp.logging.interceptor)
     implementation(libs.retrofit)
-    implementation(libs.retrofit.kotlinx.serialization)
-
-    implementation(libs.coil.compose)
-    implementation(libs.coil.network.okhttp)
+    implementation(libs.retrofit.gson)
+    implementation(libs.gson)
+    implementation(libs.glide)
 
     debugImplementation(libs.leakcanary.android)
 
     testImplementation(libs.junit4)
-    testImplementation(libs.kotlinx.coroutines.test)
-    testImplementation(libs.turbine)
-    testImplementation(libs.androidx.paging.testing)
-    testImplementation(libs.androidx.work.testing)
-    testImplementation(libs.androidx.room.testing)
-    testImplementation(libs.hilt.android.testing)
-    kspTest(libs.hilt.compiler)
-    testImplementation(libs.okhttp.mockwebserver)
     testImplementation(libs.robolectric)
+    testImplementation(libs.androidx.arch.core.testing)
     testImplementation(libs.androidx.test.core)
     testImplementation(libs.androidx.test.ext.junit)
-    testImplementation(composeBom)
-    testImplementation(libs.androidx.compose.ui.test.junit4)
-    debugImplementation(libs.androidx.compose.ui.test.manifest)
-}
-
-// Coverage of the data and storage layers (docs/PLAN.md, section 8): at least 60% of lines.
-kover {
-    currentProject {
-        createVariant("coverage") {
-            add("debug")
-        }
-    }
-    reports {
-        variant("coverage") {
-            filters {
-                includes {
-                    packages("ru.kinopolka.core.data", "ru.kinopolka.core.database")
-                }
-                excludes {
-                    // Generated by Room and Hilt, and DI wiring.
-                    classes("*_Impl", "*_Impl\$*", "*_Factory", "*_MembersInjector", "*_HiltModules*", "*Hilt_*")
-                    packages("ru.kinopolka.core.data.di", "ru.kinopolka.core.database.di")
-                }
-            }
-            verify {
-                rule {
-                    minBound(60)
-                }
-            }
-        }
-    }
+    testImplementation(libs.androidx.test.espresso.core)
+    testImplementation(libs.androidx.test.espresso.contrib)
+    testImplementation(libs.androidx.room.testing)
+    testImplementation(libs.androidx.work.testing)
+    testImplementation(libs.okhttp.mockwebserver)
+    testImplementation(libs.retrofit.mock)
+    testImplementation(libs.hilt.android.testing)
+    testAnnotationProcessor(libs.hilt.compiler)
+    debugImplementation(libs.androidx.fragment.testing)
 }
